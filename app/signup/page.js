@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/api';
@@ -37,7 +36,6 @@ const Signup = () => {
       });
 
       const data = response.data;
-      console.log(data)
 
 
 

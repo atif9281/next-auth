@@ -48,7 +48,6 @@ const ChatWindow = ({ conversationId, onNewMessage }) => {
         sender: "bot", 
         content: response.data.response,
       };
-      console.log(response.data.response)
       setMessages([...messages, newMessage, newMessagefrombot]);
 
       onNewMessage(newMessage);

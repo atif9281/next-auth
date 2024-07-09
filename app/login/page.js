@@ -19,7 +19,6 @@ const Login = () => {
       const response = await api.post('/auth/login', { email, password });
 
       const data = response.data;
-      console.log(data)
 
       if (data.error) {
         alert('Error occurred: ' + data.error);

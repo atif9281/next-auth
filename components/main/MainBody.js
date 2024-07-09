@@ -52,7 +52,6 @@ useEffect(() => {
 
 
   const handleLogout = async () => {
-      console.log('clicked handlelogout')
       try {
         await api.get('/auth/logout');
         // Remove the token from cookies
@@ -99,7 +98,7 @@ useEffect(() => {
       }
     };
     if (authenticated) fetchLatestConversation();
-  }, []);
+  }, [authenticated]);
 
   const handleNewMessage = (newMessage) => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
