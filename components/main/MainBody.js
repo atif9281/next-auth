@@ -99,8 +99,7 @@ useEffect(() => {
         console.error('Error fetching latest conversation:', error);
       }
     };
-    
-    fetchLatestConversation();
+    if (authenticated) fetchLatestConversation();
   }, []);
 
   const handleNewMessage = (newMessage) => {
