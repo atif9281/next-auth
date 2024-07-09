@@ -27,7 +27,6 @@ const MainBody = () => {
 
 const checkAuthentication = async () => {
   const token = getCookieValue('token'); // Replace 'token' with your cookie name
-  console.log('Token:', token); // Log the token
 
   if (token) {
     try {
