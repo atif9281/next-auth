@@ -2,10 +2,13 @@ import { NextResponse } from 'next/server';
 
 export const GET = async (req) => {
   try {
-    // Set the cookie 'jwt' to 'loggedout' with an expiration of 10 seconds
+    // Set the cookies 'jwt' and 'token' to 'loggedout' with an expiration of 10 seconds for 'jwt' and immediate expiration for 'token'
     const logoutCookie = new Response('Logged out', {
       headers: {
-        'Set-Cookie': `jwt=loggedout; Max-Age=10; Path=/; HttpOnly`,
+        'Set-Cookie': [
+          `jwt=loggedout; Max-Age=10; Path=/; HttpOnly`,
+          `token=; Max-Age=0; Path=/; HttpOnly`
+        ],
       },
     });
 

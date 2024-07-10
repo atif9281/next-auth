@@ -3,7 +3,8 @@ import { jwtVerify } from 'jose';
 
 export async function middleware(req) {
   const token = req.cookies.get('token')?.value;
-  console.log('TokenMiddleware:', token);
+
+  if(token == undefined) return NextResponse.redirect(new URL('/login', req.url));
 
   if (!token) {
     // Redirect unauthenticated users trying to access protected routes to '/login'
@@ -18,7 +19,6 @@ export async function middleware(req) {
     const { payload } = await jwtVerify(token, secret);
 
     req.user = payload; // Attach user info to the request object
-    console.log('Decoded Token:', payload);
     return NextResponse.next(); // Proceed to the next middleware or the route handler
   } catch (error) {
     console.error('Error verifying token:', error);

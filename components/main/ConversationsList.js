@@ -31,10 +31,7 @@ const ConversationsList = ({ onSelectConversation, conversationId }) => {
   const handleDeleteConversation = async (id) => {
     setLoading(true);
     try {
-      await api.delete(`/auth/deleteConversation/${id}`, {
-        withCredentials: true,
-        headers: { Authorization: `Bearer ${Cookies.get('token')}` }
-      });
+      await api.delete(`/auth/deleteConversation/${id}`);
       setConversationIds(conversationIds.filter((cid) => cid !== id));
     } catch (error) {
       console.error(`Error deleting conversation ${id}:`, error);
