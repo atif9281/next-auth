@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import Typing from '@/components/main/Typing'
-import Cookies from 'js-cookie';
 import api from '@/lib/api';
+import Loader from './Loader';
 
 const ChatWindow = ({ conversationId, onNewMessage }) => {
   const [messages, setMessages] = useState([]);
@@ -91,7 +90,9 @@ const ChatWindow = ({ conversationId, onNewMessage }) => {
     <div>
         
       {loading ? (
-        <div className='text-center m-64 text-2xl'>Loading</div>
+        <div className="flex justify-center items-center h-full">
+            <Loader />
+          </div>
       ) : (
         <div className="chat-window custom-scrollbar mb-24">
           {messages.length > 0 ?  (messages.map((message, index) => (

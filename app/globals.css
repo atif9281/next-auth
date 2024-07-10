@@ -74,6 +74,34 @@
   height: 22px;
 }
 
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100vh;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 45px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(148 163 184);
+  /* Adding vendor-prefixed mask properties for compatibility */
+  -webkit-mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+  -moz-mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+  -ms-mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+  -o-mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+  mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+  transform-origin: 50% 40%;
+  animation: l25 1s infinite linear;
+}
+
+@keyframes l25 {
+  100% { transform: rotate(1turn); }
+}
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
