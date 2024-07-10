@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import Cookies from 'js-cookie';
 import api from '@/lib/api';
+import Loader from './Loader';
 
 const ConversationsList = ({ onSelectConversation, conversationId }) => {
   const [conversationIds, setConversationIds] = useState([]);
@@ -46,9 +45,13 @@ const ConversationsList = ({ onSelectConversation, conversationId }) => {
   };
 
   return (
-    <div className="overflow-auto custom-scrollbar mt-4 ml-1" style={{ height: '388px' }}>
+    <div className="overflow-auto custom-scrollbar mt-4 mb-7 ml-1" style={{ height: '328px' }}>
       <ul>
-        {
+        {loading ? (
+        <div className="flex justify-center items-center h-full">
+            <Loader />
+          </div>
+      ) : (
           conversationIds.map((id) => (
             <li
               key={id}
@@ -70,7 +73,7 @@ const ConversationsList = ({ onSelectConversation, conversationId }) => {
               </button>
             </li>
           ))
-        }
+        )}
       </ul>
     </div>
   );

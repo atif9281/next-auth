@@ -81,7 +81,7 @@ const ChatWindow = ({ conversationId, onNewMessage }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (messagesEndRef.current) {
+    if (messagesEndRef.current && messages.length > 0) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
@@ -102,7 +102,9 @@ const ChatWindow = ({ conversationId, onNewMessage }) => {
               </span>
               {message.content}
             </div>
-          ))) : (<div className='text-center m-64 text-2xl'>No messages yet</div>)}
+          ))) : (
+            <div className='flex justify-center'><div className='text-center m-64 text-2xl'>No messages yet</div></div>
+            )}
           {sending ? <Typing /> : null}
           <div ref={messagesEndRef}></div>
         </div>
