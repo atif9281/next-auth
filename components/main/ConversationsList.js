@@ -45,7 +45,7 @@ const ConversationsList = ({ onSelectConversation, conversationId }) => {
   };
 
   return (
-    <div className="overflow-auto custom-scrollbar mt-4 mb-7 ml-1" style={{ height: '328px' }}>
+    <div className="overflow-auto custom-scrollbar mt-4 mb-7 ml-1" style={{ height: '60vh' }}>
       <ul>
         {loading ? (
         <div className="flex justify-center items-center h-full">
