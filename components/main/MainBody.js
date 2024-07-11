@@ -142,7 +142,7 @@ const MainBody = () => {
         <div className="h-full px-3 pb-4 custom-scrollbar bg-white dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
             <li>
-            <div className={`relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-slate-500 ${sidebarOpen ? 'mt-12' : ''}`}>
+            <div className={`relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-slate-500 ${sidebarOpen ? 'mt-8' : ''}`}>
   <i className="fas fa-home text-white"></i>
   <span className="-mr-1 font-medium">CodeBox 3.5</span>
 </div>
@@ -158,9 +158,11 @@ const MainBody = () => {
               </button>
             </li>
             <ConversationsList conversationId={conversationId} onSelectConversation={handleSelectConversation} />
-            <Logout clickingLogout={handleLogout}></Logout>
+            
           </ul>
+          <Logout clickingLogout={handleLogout}></Logout>
         </div>
+        
       </aside>
       <main className="sm:ml-64 ml-0 lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-3/4 xl:w-3/4 mx-2 pt-2 custom-scrollbar overflow-hidden scrollbar-none">
         <ChatWindow conversationId={conversationId} onNewMessage={handleNewMessage} />

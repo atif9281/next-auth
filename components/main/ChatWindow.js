@@ -96,8 +96,8 @@ const ChatWindow = ({ conversationId, onNewMessage }) => {
       ) : (
         <div className="chat-window custom-scrollbar">
           {messages.length > 0 ?  (messages.map((message, index) => (
-            <div key={index} className="mb-4 p-4 bg-white shadow-md rounded-md  mt-4">
-              <span style={{ fontWeight: 'bold' }}>
+            <div key={index} className="mb-4 p-4 bg-white shadow-md rounded-md  mt-4 break-words">
+              <span className='break-words' style={{ fontWeight: 'bold'}}>
                 {message.sender === 'user' ? 'You : ' : 'Bot : '}
               </span>
               {message.content}
@@ -110,7 +110,7 @@ const ChatWindow = ({ conversationId, onNewMessage }) => {
         </div>
       )}
       {error && <div>Error: {error.message}</div>}
-      <form onSubmit={handleSubmit} className="fixed ml-4 bottom-0 w-full p-4 bg-gray-100 flex items-center">
+      <form onSubmit={handleSubmit} style={{width: "84%"}} className="fixed ml-4 bottom-0 md:w-screen lg:w-screen p-4 bg-gray-100 flex items-center">
         <input
           type="text"
           value={text}
