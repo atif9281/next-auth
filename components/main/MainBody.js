@@ -15,6 +15,7 @@ const MainBody = () => {
   const [authenticated, setAuthenticated] = useState(null); // Updated to handle initial state
   const [logout, setLogout] = useState(false);
   const [initialCheckDone, setInitialCheckDone] = useState(false); // Updated to initialize as false
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const checkAuthentication = async () => {
     if (authenticated === null) {
@@ -102,13 +103,51 @@ const MainBody = () => {
   return (
     <div>
       {authenticated ? (
-        <div className="h-screen bg-gray-200 flex overflow-hidden">
-          <aside className="bg-white w-64 h-screen fixed p-4">
-            <div className="space-y-4">
-              <div className="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-slate-500">
-                <i className="fas fa-home text-white"></i>
-                <span className="-mr-1 font-medium">CodeBox 3.5</span>
-              </div>
+        <div className='chat-window custom-scrollbar'>
+      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <div className="px-3 py-3 lg:px-5 lg:pl-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center justify-start rtl:justify-end">
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                aria-controls="logo-sidebar"
+                type="button"
+                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              >
+                <span className="sr-only">Open sidebar</span>
+                <svg
+                  className="w-6 h-6"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clipRule="evenodd"
+                    fillRule="evenodd"
+                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <aside
+        id="logo-sidebar"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-10 transition-transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+        aria-label="Sidebar"
+      >
+        <div className="h-full px-3 pb-4 custom-scrollbar bg-white dark:bg-gray-800">
+          <ul className="space-y-2 font-medium">
+            <li>
+            <div className={`relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-slate-500 ${sidebarOpen ? 'mt-12' : ''}`}>
+  <i className="fas fa-home text-white"></i>
+  <span className="-mr-1 font-medium">CodeBox 3.5</span>
+</div>
+            </li>
+            <li>
               <button
                 onClick={handleNewChat}
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group text-white bg-slate-400 w-56"
@@ -117,17 +156,16 @@ const MainBody = () => {
                 <span className='text-white bg-slate-400'>Create new chat</span>
                 <FontAwesomeIcon icon={faPlusCircle} className="ml-2 text-slate-600 text-lg" />
               </button>
-            </div>
+            </li>
             <ConversationsList conversationId={conversationId} onSelectConversation={handleSelectConversation} />
             <Logout clickingLogout={handleLogout}></Logout>
-          </aside>
-          <main className="sm:ml-64 ml-0 lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-3/4 xl:w-3/4 mx-2 pt-5">
-            <ChatWindow
-              conversationId={conversationId}
-              onNewMessage={handleNewMessage}
-            />
-          </main>
+          </ul>
         </div>
+      </aside>
+      <main className="sm:ml-64 ml-0 lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-3/4 xl:w-3/4 mx-2 pt-2 custom-scrollbar overflow-hidden scrollbar-none">
+        <ChatWindow conversationId={conversationId} onNewMessage={handleNewMessage} />
+      </main>
+    </div>
       ) : (
         <div className='text-center bg-gray-200 w-full min-h-screen flex flex-col items-center justify-center'>
           <div className="text-2xl text-center font-bold tracking-wide text-gray-800">Please login or sign in first</div>

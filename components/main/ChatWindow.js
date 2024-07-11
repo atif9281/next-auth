@@ -94,7 +94,7 @@ const ChatWindow = ({ conversationId, onNewMessage }) => {
             <Loader />
           </div>
       ) : (
-        <div className="chat-window custom-scrollbar mb-24">
+        <div className="chat-window custom-scrollbar">
           {messages.length > 0 ?  (messages.map((message, index) => (
             <div key={index} className="mb-4 p-4 bg-white shadow-md rounded-md  mt-4">
               <span style={{ fontWeight: 'bold' }}>
